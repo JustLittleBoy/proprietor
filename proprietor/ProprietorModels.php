@@ -74,7 +74,7 @@ class ProprietorModels
 	private function getModel()
 	{
 		$child_class_name = get_class($this);
-		// var_dump($child_class_name);
+		
 		// 命名空间不同处理 app\Model\TestModel | TestModel
 		$sub_flag = strrpos($child_class_name, '\\');
 		
