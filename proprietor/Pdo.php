@@ -10,6 +10,8 @@ class Pdo extends \PDO
 
 	private static $_commit_times=0;
 	
+	public static $_query_times=0;//sql执行次数
+	
 	public function __construct($config)
 	{
 		if (empty($config)) {
@@ -158,6 +160,8 @@ class Pdo extends \PDO
 			}
 		}
 		
+		++self::$_query_times;
+		
 		if ($sth->execute()) {
 			return $sth;
 		}
@@ -168,6 +172,9 @@ class Pdo extends \PDO
 
 	public function query($sql)
 	{
+		
+		++self::$_query_times;
+		
 		$result = parent::query($sql);
 		if ($result === false) {
 			// var_dump($this->errorInfo());
