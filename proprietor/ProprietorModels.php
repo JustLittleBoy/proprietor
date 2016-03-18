@@ -4,7 +4,7 @@ namespace proprietor;
 class ProprietorModels
 {
 	// 数据库连接
-	protected $_DB;
+	protected $_db;
 	
 	// 数据库名称
 	private $db_name;
@@ -42,10 +42,10 @@ class ProprietorModels
 	 */
 	private function getDb()
 	{
-		if (! $this->_DB) {
-			$this->_DB = \ProprietorTool::getDb($this->db_name);
+		if (! $this->_db) {
+			$this->_db = \ProprietorTool::getDb($this->db_name);
 		}
-		return $this->_DB;
+		return $this->_db;
 	}
 
 	/**
@@ -74,7 +74,7 @@ class ProprietorModels
 	private function getModel()
 	{
 		$child_class_name = get_class($this);
-		
+		// var_dump($child_class_name);
 		// 命名空间不同处理 app\Model\TestModel | TestModel
 		$sub_flag = strrpos($child_class_name, '\\');
 		
@@ -163,7 +163,7 @@ class ProprietorModels
 	{
 		$table = $this->getTableName();
 		
-		$db = $this->_DB;
+		$db = $this->_db;
 		
 		if (is_array($data) && ! empty($data)) {
 			$sql = 'INSERT INTO ' . $table . ' ';
@@ -209,7 +209,7 @@ class ProprietorModels
 	{
 		$table = $this->getTableName();
 		
-		$db = $this->_DB;
+		$db = $this->_db;
 		
 		$limit = $is_first ? ' LIMIT 1' : '';
 		

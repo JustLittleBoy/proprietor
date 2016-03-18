@@ -93,10 +93,10 @@ class Proprietor
 					$action = $html_url2[1].'Action';
 					$param = $url_array[1];
 				} else {
-					self::showSysErrorPage('链接有误，方法名不存在');
+					\ProprietorTool::showSysErrorPage('链接有误，方法名不存在');
 				}
 			} else {
-				self::showSysErrorPage('链接有误，控制器不存在');
+				\ProprietorTool::showSysErrorPage('链接有误，控制器不存在');
 			}
 		} elseif ($count_url_para > 2) {
 			// (2).com/a/f/param1_name/param1_val...
@@ -112,10 +112,10 @@ class Proprietor
 					$action = $html_url2[1].'Action';
 					$param = $url_array[1];
 				} else {
-					self::showSysErrorPage('链接有误，方法名不存在');
+					\ProprietorTool::showSysErrorPage('链接有误，方法名不存在');
 				}
 			} else {
-				self::showSysErrorPage('链接有误，控制器不存在');
+				\ProprietorTool::showSysErrorPage('链接有误，控制器不存在');
 			}
 			$param = substr($url, (strpos($url, $html_url2[0]) + strlen($html_url2[0])));
 		}
@@ -232,15 +232,6 @@ class Proprietor
 			include self::$_autoload[$name];
 	
 		}
-	}
-	
-	/**
-	 * 错误提示
-	 */
-	public static function showSysErrorPage($msg)
-	{
-		include_once SYS_PATH . 'proprietor/error.php';
-		die();
 	}
 	
 	/**

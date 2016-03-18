@@ -69,7 +69,7 @@ class ProprietorView
 			ob_start();
 			
 			if(!file_exists($this->theme)){
-				\Proprietor::showSysErrorPage('模板文件不存在['.$this->theme.']');
+				\ProprietorTool::showSysErrorPage('模板文件不存在['.$this->theme.']');
 			}
 			
 			$this->_content = file_get_contents($this->theme);

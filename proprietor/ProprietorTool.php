@@ -34,7 +34,7 @@ class ProprietorTool
 		}
 		
 		if (empty($config)) {
-			\Proprietor::showSysErrorPage('数据库配置不存在，请确认配置');
+			self::showSysErrorPage('数据库配置不存在，请确认配置');
 		}
 		self::$DB[$db_name] = new Pdo($config);
 		// new \Pdo('mysql:host=127.0.0.1;dbname=test;','root','root');
@@ -79,6 +79,16 @@ class ProprietorTool
 		}
 	}
 
+
+	/**
+	 * 错误提示
+	 */
+	public static function showSysErrorPage($msg)
+	{
+		include_once SYS_PATH . 'proprietor/error.php';
+		die();
+	}
+	
 	/**
 	 * 写日志功能
 	 * 

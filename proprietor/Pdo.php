@@ -8,10 +8,12 @@ class Pdo extends \PDO
 
 	protected $_errorCode;
 
+	private static $_commit_times=0;
+	
 	public function __construct($config)
 	{
 		if (empty($config)) {
-			\Proprietor::showSysErrorPage('数据库配置错误');
+			\ProprietorTool::showSysErrorPage('数据库配置错误');
 		}
 		$host = $config['host'];
 		$dbname = $config['dbname'];
@@ -111,17 +113,31 @@ class Pdo extends \PDO
 
 	public function begin()
 	{
-		parent::beginTransaction();
+		if(self::$_commit_times==0){
+			parent::beginTransaction();
+		}
+		
 	}
 
 	public function commit()
 	{
-		parent::commit();
+		if(self::$_commit_times==0){
+			parent::commit();
+		}
+		
+		++self::$_commit_times;
+		
 	}
 
 	public function rollBack()
 	{
-		parent::rollBack();
+		if(self::$_commit_times==1){
+			parent::rollBack();
+		}
+		
+		--self::$_commit_times;
+		
+		
 	}
 
 	private function _prepare($condition, $bind = array())
