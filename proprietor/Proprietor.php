@@ -42,7 +42,9 @@ class Proprietor
 		self::autoroutes(); // 路由
 	}
 	
-	// 自动路由
+	/**
+	 * 自动路由
+	 */
 	public static function autoroutes()
 	{
 		
@@ -52,8 +54,25 @@ class Proprietor
 		 * (2).com/a/f/param1_name/param1_val...
 		 * (3).com/a/f.html(.php)?v_n=v_v&v_n2=v_v2....
 		 */
-		$url = $_SERVER['REQUEST_URI'];
-		
+	    $http_host=$_SERVER['HTTP_HOST'];
+	    //添加本地访问URL解析支持
+	    $sub_request_str='';
+	    if($http_host== 'localhost' || $http_host='127.0.0.1'){
+	       $url_in=realpath('.');
+	       
+	       $url_in_arr=explode(DS, $url_in);
+	       
+	       if($url_in_arr && !strpos( $url_in_arr[count($url_in_arr)-1],':')){
+	          $sub_request_str=array_pop($url_in_arr);
+	       }
+	    }
+	    
+	    $url = $_SERVER['REQUEST_URI'];
+	 
+	    if($sub_request_str){
+	        $url=substr($url,strpos($url,$sub_request_str)+strlen($sub_request_str));
+	    }
+
 		if ($url{0} == '/') {
 			$url = substr($url, 1);
 		}
