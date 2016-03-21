@@ -174,7 +174,7 @@ class Proprietor
 		@call_user_func(array(
 			$class,
 			ACTION
-		), $param) or die('请求链接有误，请确认方法名[' . $action . ']或控制器[' . $controller . ']存在');
+		), $param);
 	}
 
 	/**
