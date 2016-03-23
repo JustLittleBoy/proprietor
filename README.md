@@ -14,7 +14,23 @@ A flexible,simple PHP Framework<br/>
      index.php 项目入口
 
 0.项目入口<br/>
-
+		
+		 解析路由分发
+		-->根据配置加载控制器，模型 
+		--> 生成渲染
+		-->缓存
+		define('APP_PATH', realpath('../app')); // 应用路径
+		
+		define('DEBUG',true);//是否显示调试信息 默认显示
+		
+		define('NAMESAPCE','app');//命名空间 可以不设置
+		
+		//define('CACHE_TIME',1);//缓存时间
+		
+		require_once '../proprietor/Proprietor.php'; // 引入框架总入口(路由解析文件配置，自动加载等行文)
+		
+		Proprietor::Init();
+		
 1.框架总入口类Proprietor.php（暂时这么直白称呼）<br/>
 
 2.数据库操作类<br/>

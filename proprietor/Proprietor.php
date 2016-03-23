@@ -35,7 +35,7 @@ class Proprietor
 		));
 		
 		// 注册错误屏蔽
-		if (! DEBUG) {
+		if (defined('DEBUG') && ! DEBUG) {
 			set_exception_handler(array(
 				'Proprietor',
 				'exceptionHandler'
