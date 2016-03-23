@@ -27,7 +27,7 @@ A flexible,simple PHP Framework<br/>
 		
 		//define('CACHE_TIME',1);//缓存时间
 		
-		require_once '../proprietor/Proprietor.php'; // 引入框架总入口(路由解析文件配置，自动加载等行文)
+		require_once '../proprietor/Proprietor.php'; // 引入框架总入口(路由解析文件配置，自动加载等行为)
 		
 		Proprietor::Init();
 		
