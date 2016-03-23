@@ -14,7 +14,8 @@ A flexible,simple PHP Framework<br/>
      index.php 项目入口
 
 0.项目入口<br/>
-		 解析路由分发
+		
+		解析路由分发
 		-->根据配置加载控制器，模型 
 		--> 生成渲染
 		-->缓存
